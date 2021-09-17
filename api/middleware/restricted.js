@@ -3,7 +3,9 @@ const jwt = require("jsonwebtoken");
 
 module.exports = (req, res, next) => {
   const token = req.headers.authorization;
-  const formattedToken = token.replace("Bearer", "").trim()
+  
+  const formattedToken = token ? token.replace("Bearer", "").trim() : null
+  
   if (!formattedToken)
     return next({
       status: 401,
